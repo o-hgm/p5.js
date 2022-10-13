@@ -7,24 +7,25 @@ function setup() {
 }
 
 function draw() {
+  delay_x = 0; //PI/8;
+  delay_y = 0; //PI/8;
+  cicle_scope = 2*PI;
   draw_center_x = width/2;
   draw_center_y = height/2;
   //distance_to_center = 100;
   
-  frame_divisor = 20;
-  number_steps = 20; // random(10, 20);
-  step_increment = 0.5; // random(0.5, 5, 0.5);
-  distance_to_center = random(20, 300);
-
-  if (frameCount % frame_divisor == 0) {
-    r = random(0, 255); g = random(0, 255); b = random(0, 255); a = random(0, 255);
-    fill(r, g, b, a);
+  number_steps = 10; // random(10, 20);
+  step_increment = random(0.1, 10);
+  distance_to_center = random(5, 30) * 10;
+  if(frameCount % 10 == 0) {
+  r = random(0, 255) * 10; g = random(0, 25) * 10; b = random(0, 25) * 10; a = random(0, 25) * 10;
+  fill(r, g, b, a);
     stroke(r,g,b,a);
   }
-  for (ellipse_step = 0; ellipse_step <= number_steps; ellipse_step += step_increment) {
-  ellipse_x = draw_center_x + sin( ellipse_step * (2*PI/number_steps)) * distance_to_center;
-  ellipse_y = draw_center_y + cos( ellipse_step * (2*PI/number_steps)) * distance_to_center;
+  for (ellipse_step = random(-1, 1); ellipse_step <= number_steps; ellipse_step += step_increment) {
+  ellipse_x = draw_center_x + sin( delay_x + cicle_scope * (ellipse_step/number_steps)) * distance_to_center;
+  ellipse_y = draw_center_y + cos( delay_y + cicle_scope * (ellipse_step/number_steps)) * distance_to_center;
   
-  ellipse(ellipse_x, ellipse_y,10,10);
+  ellipse(ellipse_x, ellipse_y,15,15);
   }  
 }

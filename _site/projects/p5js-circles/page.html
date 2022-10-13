@@ -4,11 +4,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Playing with circles</title>
+  <title>Circles</title>
   <meta name="description" content="">
   <link rel="icon" type="image/png" href="/sketchbook/assets/favicon.png" />
   <link rel="stylesheet" href="/sketchbook/assets/main.css">
-  <link rel="canonical" href="https://ohgm.dev/sketchbook/projects/p5js-circles/page.html">
+  <link rel="canonical" href="http://localhost:4000/sketchbook/projects/p5js-circles/page.html">
   <link rel="alternate" type="application/rss+xml" title="Sketchbook" href="/sketchbook/feed.xml">
   <!-- dependencies -->
   
@@ -46,7 +46,7 @@
   
     
     
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
     
 
     
@@ -82,9 +82,9 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Playing with circles</h1>
+    <h1 class="post-title p-name" itemprop="name headline">Circles</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="2016-09-01T00:00:00+02:00" itemprop="datePublished">Sep 1, 2016
+      <time class="dt-published" datetime="2022-10-09T00:00:00+02:00" itemprop="datePublished">Oct 9, 2022
       </time></p>
   </header>
 
@@ -93,6 +93,36 @@
     <script type="text/javascript" src="sketch.js"></script>
 </div>
 
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">createCanvas</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">);</span>
+  <span class="nx">canvas</span><span class="p">.</span><span class="nx">parent</span><span class="p">(</span><span class="dl">'</span><span class="s1">simple-sketch-holder</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">background</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+  <span class="nx">frameRate</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">draw_center_x</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+  <span class="nx">draw_center_y</span> <span class="o">=</span> <span class="nx">height</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+  <span class="c1">//distance_to_center = 100;</span>
+  <span class="nx">frame_divisor</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+  <span class="nx">number_steps</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">// random(10, 20);</span>
+  <span class="nx">step_increment</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">// random(0.5, 5, 0.5);</span>
+  <span class="nx">distance_to_center</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">frameCount</span> <span class="o">%</span> <span class="nx">frame_divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">step_increment</span> <span class="o">+=</span> <span class="nx">random</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="nx">r</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
+    <span class="nx">fill</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="p">);</span>
+    <span class="nx">stroke</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">a</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">ellipse_step</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">ellipse_step</span> <span class="o">&lt;=</span> <span class="nx">number_steps</span><span class="p">;</span> <span class="nx">ellipse_step</span> <span class="o">+=</span> <span class="nx">step_increment</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ellipse_x</span> <span class="o">=</span> <span class="nx">draw_center_x</span> <span class="o">+</span> <span class="nx">sin</span><span class="p">(</span> <span class="nx">ellipse_step</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nx">PI</span><span class="o">/</span><span class="nx">number_steps</span><span class="p">))</span> <span class="o">*</span> <span class="nx">distance_to_center</span><span class="p">;</span>
+  <span class="nx">ellipse_y</span> <span class="o">=</span> <span class="nx">draw_center_y</span> <span class="o">+</span> <span class="nx">cos</span><span class="p">(</span> <span class="nx">ellipse_step</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nx">PI</span><span class="o">/</span><span class="nx">number_steps</span><span class="p">))</span> <span class="o">*</span> <span class="nx">distance_to_center</span><span class="p">;</span>
+  
+  <span class="nx">ellipse</span><span class="p">(</span><span class="nx">ellipse_x</span><span class="p">,</span> <span class="nx">ellipse_y</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+  <span class="p">}</span>  
+<span class="p">}</span></code></pre></figure>
 
   </div><a class="u-url" href="/sketchbook/projects/p5js-circles/page.html" hidden></a>
 </article>
